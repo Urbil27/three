@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar modelo 3D </title>
+    <script src="node_modules\three\build\three.min.js"></script>
+    <script src="node_modules\three\examples\js\loaders\GLTFLoader.js"></script>
+    <script src="node_modules\three\examples\js\controls\OrbitControls.js"></script>
+ 
+</head>
+<body>
+  <button onclick="alante()">Alante</button>
+  <button onclick="derecha()">Derecha</button>
+  <button onclick="izquierda()">Izquierda</button>
+  <button onclick="atras()">Atras</button>
+    <script src="js/3d.js"></script>
+    <script>
+        var rotationDegrees = 0;
+        function alante(){
+        spider.position.z += ySpeed;
+        if(rotationDegrees > 0){
+            console.log("mayor que 0");
+            spider.position.x += 1;
+        }
+
+        else if(rotationDegrees < 0){
+            console.log("menor que 0");
+            spider.position.x += -1;
+        }
+    }
+        function atras(){ 
+        spider.position.z -= ySpeed;
+        }
+
+        function derecha(){
+            rotationDegrees = rotationDegrees + 35;
+            rotateObject(spider,0,rotationDegrees,0);            
+        }
+        function izquierda(){
+            rotationDegrees = rotationDegrees - 35;
+            rotateObject(spider,0,rotationDegrees,0);
+        }
+      
+var xSpeed = 1;
+var ySpeed = 1;
+
+document.addEventListener("keydown", onDocumentKeyDown, false);
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+    if (keyCode == 87) {
+        console.log("test");
+        spider.position.y += ySpeed;
+    } else if (keyCode == 83) {
+        console.log("test");
+        spider.position.y -= ySpeed;
+    } else if (keyCode == 65) {
+        console.log("test");
+        spider.position.x -= xSpeed;
+    } else if (keyCode == 68) {
+        console.log("test");
+        spider.position.x += xSpeed;
+    } else if (keyCode == 32) {
+        console.log("test");
+        spider.position.set(0, 0, 0);
+    }
+};
+    </script>
+    
+</body>
+</html>
