@@ -8,6 +8,8 @@
     <script src="node_modules\three\build\three.min.js"></script>
     <script src="node_modules\three\examples\js\loaders\GLTFLoader.js"></script>
     <script src="node_modules\three\examples\js\controls\OrbitControls.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
  
 </head>
 <body>
@@ -18,16 +20,22 @@
     <script src="js/3d.js"></script>
     <script>
         var rotationDegrees = 0;
+        var direccion = 0;
+        var xSpeed = 1;
+        var ySpeed = 1;
+
         function alante(){
         spider.position.z += ySpeed;
         if(rotationDegrees > 0){
             console.log("mayor que 0");
-            spider.position.x += 1;
+            direccion++;
+            spider.position.x += direccion;
         }
 
         else if(rotationDegrees < 0){
             console.log("menor que 0");
-            spider.position.x += -1;
+            direccion --;
+            spider.position.x += direccion;
         }
     }
         function atras(){ 
@@ -35,16 +43,15 @@
         }
 
         function derecha(){
-            rotationDegrees = rotationDegrees + 35;
+            rotationDegrees ++;
             rotateObject(spider,0,rotationDegrees,0);            
         }
         function izquierda(){
-            rotationDegrees = rotationDegrees - 35;
+            rotationDegrees --;
             rotateObject(spider,0,rotationDegrees,0);
         }
       
-var xSpeed = 1;
-var ySpeed = 1;
+
 
 document.addEventListener("keydown", onDocumentKeyDown, false);
 function onDocumentKeyDown(event) {
@@ -65,7 +72,32 @@ function onDocumentKeyDown(event) {
         console.log("test");
         spider.position.set(0, 0, 0);
     }
-};
+    };
+    </script>
+    <script>
+         var ros = new ROSLIB.Ros({
+            url: 'ws://127.0.0.1:9090'
+        });
+        var listener = new ROSLIB.Topic({
+        ros : ros,
+        name : '/turtle1/cmd_vel',
+        messageType : 'geometry_msgs/Twist'
+        });
+        listener.subscribe(function(message) {
+            console.log('Received message on ' + listener.name + ': ' + message.linear.x + " | "+ message.linear.y);
+            if(message.linear.x>0){
+                alante();
+            }
+            else if(message.linear.x<0){
+                atras();
+            }
+            if(message.angular.z>0){
+                izquierda();
+            }
+            else if(message.angular.z<0){
+                derecha();
+            }
+        });
     </script>
     
 </body>
