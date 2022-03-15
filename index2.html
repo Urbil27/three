@@ -24,31 +24,229 @@
         var xSpeed = 1;
         var ySpeed = 1;
 
+        //Función que se ejecuta para mover el objeto hacia delante
         function alante(){
-        spider.position.z += ySpeed;
-        if(rotationDegrees > 0){
-            console.log("mayor que 0");
+        console.log("alante");
+        console.log("rotationDegrees "+ rotationDegrees);
+
+        if(rotationDegrees == 0){
+            console.log("if 1");
             direccion++;
-            spider.position.x += direccion;
+            spider.position.z += 1;
         }
 
-        else if(rotationDegrees < 0){
-            console.log("menor que 0");
+        else if(rotationDegrees > 0 && rotationDegrees < 90){
+            console.log("if 2");
+            direccion++;
+            spider.position.x -= 1;
+            spider.position.z += 1;
+        }
+        
+        else if(rotationDegrees == 90){
+            console.log("if 1");
+            direccion++;
+            spider.position.x += 1;
+        }
+        else if(rotationDegrees > 90 && rotationDegrees < 180){
+            console.log("if 3");
+            direccion++;
+            spider.position.x -= 1;
+            spider.position.z -= 1;
+        }
+        else if(rotationDegrees == 180){
+            console.log("if 4");
+            direccion++;
+            spider.position.z -= 1;
+        }
+
+        else if(rotationDegrees > 180 && rotationDegrees < 270){
+            console.log("if 5");
             direccion --;
-            spider.position.x += direccion;
-        }
-    }
-        function atras(){ 
-        spider.position.z -= ySpeed;
+            spider.position.x += 1;
+            spider.position.z -= 1;
         }
 
-        function derecha(){
-            rotationDegrees ++;
-            rotateObject(spider,0,rotationDegrees,0);            
+        else if(rotationDegrees == 270){
+            console.log("if 4");
+            direccion++;
+            spider.position.x -= 1;
         }
+
+        else if(rotationDegrees > 270 && rotationDegrees < 360){
+            console.log("if 6");
+            direccion --;
+            spider.position.x += 1;
+            spider.position.z += 1;
+        }
+
+        else if(rotationDegrees < 0 && rotationDegrees > -90){
+            console.log("if 7");
+            direccion++;
+            spider.position.x += 1;
+            spider.position.z += 1;
+        }
+        else if(rotationDegrees == -90){
+            console.log("if 1");
+            direccion++;
+            spider.position.x += 1;
+        }
+        else if(rotationDegrees < -90 && rotationDegrees > -180){
+            console.log("if 8");
+            direccion++;
+            spider.position.x += 1;
+            spider.position.z -= 1;
+        }
+
+        else if(rotationDegrees == -180){
+            console.log("if 9");
+            direccion++;
+            spider.position.z -= 1;
+        }
+
+        else if(rotationDegrees < -180 && rotationDegrees > -270){
+            console.log("if 10");
+            direccion --;
+            spider.position.x -= 1;
+            spider.position.z -= 1;
+        }
+
+        else if(rotationDegrees == -270){
+            console.log("if 9");
+            direccion++;
+            spider.position.x -= 1;
+        }
+
+        else if(rotationDegrees < -270 && rotationDegrees > -360){
+            console.log("if 11");
+            direccion --;
+            spider.position.x -= 1;
+            spider.position.z += 1;
+        }
+    }   
+        //Función que se ejecuta para mover el objeto hacia atras
+        function atras(){ 
+        
+            if(rotationDegrees == 0){
+            console.log("if 1");
+            direccion++;
+            spider.position.z -= 1;
+        }
+
+        else if(rotationDegrees > 0 && rotationDegrees < 90){
+            console.log("if 2");
+            direccion++;
+            spider.position.x += 1;
+            spider.position.z -= 1;
+        }
+        
+        else if(rotationDegrees == 90){
+            console.log("if 1");
+            direccion++;
+            spider.position.x -= 1;
+        }
+        else if(rotationDegrees > 90 && rotationDegrees < 180){
+            console.log("if 3");
+            direccion++;
+            spider.position.x += 1;
+            spider.position.z += 1;
+        }
+        else if(rotationDegrees == 180){
+            console.log("if 4");
+            direccion++;
+            spider.position.z += 1;
+        }
+
+        else if(rotationDegrees > 180 && rotationDegrees < 270){
+            console.log("if 5");
+            direccion --;
+            spider.position.x -= 1;
+            spider.position.z += 1;
+        }
+
+        else if(rotationDegrees == 270){
+            console.log("if 4");
+            direccion++;
+            spider.position.x += 1;
+        }
+
+        else if(rotationDegrees > 270 && rotationDegrees < 360){
+            console.log("if 6");
+            direccion --;
+            spider.position.x -= 1;
+            spider.position.z -= 1;
+        }
+
+        else if(rotationDegrees < 0 && rotationDegrees > -90){
+            console.log("if 7");
+            direccion++;
+            spider.position.x -= 1;
+            spider.position.z -= 1;
+        }
+        else if(rotationDegrees == -90){
+            console.log("if 1");
+            direccion++;
+            spider.position.x -= 1;
+        }
+        else if(rotationDegrees < -90 && rotationDegrees > -180){
+            console.log("if 8");
+            direccion++;
+            spider.position.x -= 1;
+            spider.position.z += 1;
+        }
+
+        else if(rotationDegrees == -180){
+            console.log("if 9");
+            direccion++;
+            spider.position.z += 1;
+        }
+
+        else if(rotationDegrees < -180 && rotationDegrees > -270){
+            console.log("if 10");
+            direccion --;
+            spider.position.x += 1;
+            spider.position.z += 1;
+        }
+
+        else if(rotationDegrees == -270){
+            console.log("if 9");
+            direccion++;
+            spider.position.x += 1;
+        }
+
+        else if(rotationDegrees < -270 && rotationDegrees > -360){
+            console.log("if 11");
+            direccion --;
+            spider.position.x += 1;
+            spider.position.z -= 1;
+        }
+        }
+
+        //Función que se ejecuta para rotar hacia la izquierda
         function izquierda(){
             rotationDegrees --;
-            rotateObject(spider,0,rotationDegrees,0);
+            rotateObject(spider,0,1,0); 
+
+            if(rotationDegrees==360){
+                rotationDegrees = 0;
+            }  
+            if(rotationDegrees== -360){
+                rotationDegrees = 0;
+            }           
+
+        }
+
+        //Función que se ejecuta para rotar hacia la 
+        function derecha(){
+            rotationDegrees ++;
+
+            if(rotationDegrees==360){
+                rotationDegrees = 0;
+            }  
+            if(rotationDegrees== -360){
+                rotationDegrees = 0;
+            }    
+
+            rotateObject(spider,0,-1,0);
         }
       
 
