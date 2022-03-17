@@ -10,95 +10,19 @@
     <script src="node_modules\three\examples\js\controls\OrbitControls.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.js"></script>
     <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
+
+
  
 </head>
-<body onload="correctPosition()">
+<body>
   <button onclick="alante()">Alante</button>
   <button onclick="derecha()">Derecha</button>
   <button onclick="izquierda()">Izquierda</button>
   <button onclick="atras()">Atras</button>
-  <button onclick="correctPosition()">PosicionCorrecta</button>
+ 
     <script src="js/3d.js"></script>
-    <script>
-        var rotationRadians = 0;
-        var direccion = 0;
-        var xSpeed = 1;
-        var ySpeed = 1;
-      
-        function correctPosition(){
-            rotateObject(spider,0,90,0);
-        }
-        
-        function alante(){
-        console.log("alante");
-        console.log("rotationRadians "+ rotationRadians);
-        spider.position.x = spider.position.x+1*Math.cos(rotationRadians);
-        spider.position.z = spider.position.z+1*Math.sin(rotationRadians);
-        console.log("x: "+ spider.position.x);
-        console.log("z: "+ spider.position.z);
-    }   
-    
-        //Función que se ejecuta para mover el objeto hacia atras
-        function atras(){ 
-            console.log("alante");
-        console.log("rotationRadians "+ rotationRadians);
-        spider.position.x = spider.position.x-1*Math.cos(rotationRadians);
-        spider.position.z = spider.position.z-1*Math.sin(rotationRadians);
-        console.log("x: "+ spider.position.x);
-        console.log("z: "+ spider.position.z);
-        }
+    <script src="js/movement.js"></script>
 
-        //Función que se ejecuta para rotar hacia la izquierda
-        function izquierda(){
-            rotationRadians = rotationRadians - 0.0174533;
-            rotateObject(spider,0,1,0); 
-
-            if(rotationRadians==6.28319){
-                rotationRadians = 0;
-            }  
-            if(rotationRadians== -6.28319){
-                rotationRadians = 0;
-            }           
-
-        }
-
-        //Función que se ejecuta para rotar hacia la 
-        function derecha(){
-            rotationRadians = rotationRadians + 0.0174533;
-
-            if(rotationRadians==6.28319){
-                rotationRadians = 0;
-            }  
-            if(rotationRadians== -6.28319){
-                rotationRadians = 0;
-            }    
-
-            rotateObject(spider,0,-1,0);
-        }
-      
-
-
-document.addEventListener("keydown", onDocumentKeyDown, false);
-function onDocumentKeyDown(event) {
-    var keyCode = event.which;
-    if (keyCode == 87) {
-        console.log("test");
-        spider.position.y += ySpeed;
-    } else if (keyCode == 83) {
-        console.log("test");
-        spider.position.y -= ySpeed;
-    } else if (keyCode == 65) {
-        console.log("test");
-        spider.position.x -= xSpeed;
-    } else if (keyCode == 68) {
-        console.log("test");
-        spider.position.x += xSpeed;
-    } else if (keyCode == 32) {
-        console.log("test");
-        spider.position.set(0, 0, 0);
-    }
-    };
-    </script>
     <script>
          var ros = new ROSLIB.Ros({
             url: 'ws://127.0.0.1:9090'

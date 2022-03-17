@@ -14,7 +14,6 @@
             renderer.setSize(window.innerWidth,window.innerHeight);
             document.body.appendChild(renderer.domElement);
             addModel();
-            rotateObject(spider,0,0,90);
             addPlane();
             camera.position.set( 0, 20, 100 );
             controls = new THREE.OrbitControls( camera, renderer.domElement );
