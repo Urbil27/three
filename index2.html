@@ -12,147 +12,65 @@
     <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
  
 </head>
-<body>
+<body onload="correctPosition()">
   <button onclick="alante()">Alante</button>
   <button onclick="derecha()">Derecha</button>
   <button onclick="izquierda()">Izquierda</button>
   <button onclick="atras()">Atras</button>
+  <button onclick="correctPosition()">PosicionCorrecta</button>
     <script src="js/3d.js"></script>
     <script>
-        var rotationDegrees = 0;
+        var rotationRadians = 0;
         var direccion = 0;
         var xSpeed = 1;
         var ySpeed = 1;
-
-        //Función que se ejecuta para mover el objeto hacia delante
+      
+        function correctPosition(){
+            rotateObject(spider,0,90,0);
+        }
+        
         function alante(){
         console.log("alante");
-        console.log("rotationDegrees "+ rotationDegrees);
-
-        spider.position.x = spider.position.x+1*Math.cos(rotationDegrees);
-        spider.position.z = spider.position.z+1*Math.sin(rotationDegrees);
+        console.log("rotationRadians "+ rotationRadians);
+        spider.position.x = spider.position.x+1*Math.cos(rotationRadians);
+        spider.position.z = spider.position.z+1*Math.sin(rotationRadians);
+        console.log("x: "+ spider.position.x);
+        console.log("z: "+ spider.position.z);
     }   
+    
         //Función que se ejecuta para mover el objeto hacia atras
         function atras(){ 
-        
-            if(rotationDegrees == 0){
-            console.log("if 1");
-            direccion++;
-            spider.position.z -= 1;
-        }
-
-        else if(rotationDegrees > 0 && rotationDegrees < 90){
-            console.log("if 2");
-            direccion++;
-            spider.position.x += 1;
-            spider.position.z -= 1;
-        }
-        
-        else if(rotationDegrees == 90){
-            console.log("if 1");
-            direccion++;
-            spider.position.x -= 1;
-        }
-        else if(rotationDegrees > 90 && rotationDegrees < 180){
-            console.log("if 3");
-            direccion++;
-            spider.position.x += 1;
-            spider.position.z += 1;
-        }
-        else if(rotationDegrees == 180){
-            console.log("if 4");
-            direccion++;
-            spider.position.z += 1;
-        }
-
-        else if(rotationDegrees > 180 && rotationDegrees < 270){
-            console.log("if 5");
-            direccion --;
-            spider.position.x -= 1;
-            spider.position.z += 1;
-        }
-
-        else if(rotationDegrees == 270){
-            console.log("if 4");
-            direccion++;
-            spider.position.x += 1;
-        }
-
-        else if(rotationDegrees > 270 && rotationDegrees < 360){
-            console.log("if 6");
-            direccion --;
-            spider.position.x -= 1;
-            spider.position.z -= 1;
-        }
-
-        else if(rotationDegrees < 0 && rotationDegrees > -90){
-            console.log("if 7");
-            direccion++;
-            spider.position.x -= 1;
-            spider.position.z -= 1;
-        }
-        else if(rotationDegrees == -90){
-            console.log("if 1");
-            direccion++;
-            spider.position.x -= 1;
-        }
-        else if(rotationDegrees < -90 && rotationDegrees > -180){
-            console.log("if 8");
-            direccion++;
-            spider.position.x -= 1;
-            spider.position.z += 1;
-        }
-
-        else if(rotationDegrees == -180){
-            console.log("if 9");
-            direccion++;
-            spider.position.z += 1;
-        }
-
-        else if(rotationDegrees < -180 && rotationDegrees > -270){
-            console.log("if 10");
-            direccion --;
-            spider.position.x += 1;
-            spider.position.z += 1;
-        }
-
-        else if(rotationDegrees == -270){
-            console.log("if 9");
-            direccion++;
-            spider.position.x += 1;
-        }
-
-        else if(rotationDegrees < -270 && rotationDegrees > -360){
-            console.log("if 11");
-            direccion --;
-            spider.position.x += 1;
-            spider.position.z -= 1;
-        }
+            console.log("alante");
+        console.log("rotationRadians "+ rotationRadians);
+        spider.position.x = spider.position.x-1*Math.cos(rotationRadians);
+        spider.position.z = spider.position.z-1*Math.sin(rotationRadians);
+        console.log("x: "+ spider.position.x);
+        console.log("z: "+ spider.position.z);
         }
 
         //Función que se ejecuta para rotar hacia la izquierda
         function izquierda(){
-            rotationDegrees --;
+            rotationRadians = rotationRadians - 0.0174533;
             rotateObject(spider,0,1,0); 
 
-            if(rotationDegrees==360){
-                rotationDegrees = 0;
+            if(rotationRadians==6.28319){
+                rotationRadians = 0;
             }  
-            if(rotationDegrees== -360){
-                rotationDegrees = 0;
+            if(rotationRadians== -6.28319){
+                rotationRadians = 0;
             }           
 
         }
 
         //Función que se ejecuta para rotar hacia la 
         function derecha(){
-            rotationDegrees ++;
+            rotationRadians = rotationRadians + 0.0174533;
 
-            if(rotationDegrees==360){
-                rotationDegrees = 0;
+            if(rotationRadians==6.28319){
+                rotationRadians = 0;
             }  
-            if(rotationDegrees== -360){
-                rotationDegrees = 0;
+            if(rotationRadians== -6.28319){
+                rotationRadians = 0;
             }    
 
             rotateObject(spider,0,-1,0);

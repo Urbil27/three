@@ -14,6 +14,7 @@
             renderer.setSize(window.innerWidth,window.innerHeight);
             document.body.appendChild(renderer.domElement);
             addModel();
+            rotateObject(spider,0,0,90);
             addPlane();
             camera.position.set( 0, 20, 100 );
             controls = new THREE.OrbitControls( camera, renderer.domElement );
@@ -36,6 +37,7 @@
             dirLight.castShadow = true;
             dirLight.shadow.mapSize = new THREE.Vector2(1024, 1024); 
             scene.add( dirLight );
+            
             }   
             init();
             animate();
